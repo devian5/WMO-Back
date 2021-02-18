@@ -1,0 +1,23 @@
+version: "3.5"
+services: 
+  api:
+      build: ./api
+      volumes:
+        - ./api:/api
+        - /api/node_modules
+      ports:
+        - 3000:3000
+      depends_on:
+        - mongo 
+      environment:
+        WAIT_HOSTS: mongo:27017
+  mongo:
+    image: mongo
+    restart: always
+    ports: 
+      - 27018:27017
+    container_name: db
+    volumes: 
+      - ~/mongo/data:/data/db
+    logging:
+      driver: none

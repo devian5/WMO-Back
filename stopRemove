@@ -1,0 +1,14 @@
+#!/bin/bash
+
+####################
+###   Binaries   ###
+####################
+# DOCKER_COMPOSE=$(which docker-compose)
+DOCKER=$(which docker)
+####################
+
+PROJECT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd )"
+
+echo -e "\e[32m[$(date +"%Y-%m-%d %T")] \e[33m Stopping and removing all the containers...\e[91m"
+
+${DOCKER} stop $(${DOCKER} ps -a -q) && ${DOCKER} rm $(${DOCKER} ps -a -q) --volumes
