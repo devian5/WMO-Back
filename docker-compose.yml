@@ -10,7 +10,7 @@ services:
       depends_on:
         - mongo 
       environment:
-        WAIT_HOSTS: mongo:27017
+        MONGO_SERVER: mongodb://mongo:27017/wmo
   mongo:
     image: mongo
     restart: always
