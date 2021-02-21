@@ -43,10 +43,18 @@ const deleteHandler = async (req,res) => {
 
         res.json({result,date: new Date});
     } catch (error) {
-        console.log(error)
-        
+        console.log(error)   
     }
 }
+
+const deleteUserHandler = async (req,res) => {
+    try {
+        const result = await userController.deleteAll()
+        res.json({result,date: new Date})    
+    } catch (error) {
+        console.log(error)
+    }
+};
 
 const userAllHandler = async (req,res) => {
     try {
@@ -69,5 +77,7 @@ router.delete('/delete', deleteHandler);
 router.put('/update', updateHandler);
 
 router.get('/all', userAllHandler);
+
+router.delete('/delete-all', deleteUserHandler)
 
 module.exports = router

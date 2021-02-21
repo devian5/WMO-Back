@@ -11,7 +11,6 @@ class UserController {
 
   }
 
-
   async signIn(name,email, password) { 
     const errorMessage = { error_message: 'Wrong email or password' }
     const user_list = await User.find({ name: name, email: email, password: password })
@@ -41,9 +40,12 @@ class UserController {
     )
   }
 
+  async deleteAll(deleteUser) {
+    return User.deleteMany(deleteUser)
+  }
+
   async userAll(allUser) {
     return User.find(allUser)
-
   }
 
 }
