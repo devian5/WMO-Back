@@ -10,8 +10,18 @@ class MovieController {
         return movie.find(film);
     }; 
 
-    // async update() {
-    //     return movie.update()
+    async update(title,overview,genre) {
+        return movie.updateOne(
+            {
+                title,
+                overview,
+                genre
+            }
+        )
+    }
+
+    // async delete(film){
+    //     return movie.deleteOne(film)
     // }
 };
 
