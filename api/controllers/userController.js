@@ -41,12 +41,10 @@ class UserController {
     )
   }
 
-  // async userAll() {
-  //   const user_list = await User.find({ name: name, email: email, password: password })
-  //   console.log(user_list);
-  //   return user_list
+  async userAll(allUser) {
+    return User.find(allUser)
 
-  // }
+  }
 
 }
 

@@ -51,11 +51,11 @@ const deleteHandler = async (req,res) => {
 const userAllHandler = async (req,res) => {
     try {
         const result = await userController.userAll();
-        // console.log(email,password)
+        // console.log(result)
         res.json({result,date: new Date});
         
     } catch (error) {
-        console.log(error); 
+        console.log('======================>',error); 
     };
 
 }
@@ -68,6 +68,6 @@ router.delete('/delete', deleteHandler);
 
 router.put('/update', updateHandler);
 
-router.get('all', userAllHandler);
+router.get('/all', userAllHandler);
 
 module.exports = router
