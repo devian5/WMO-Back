@@ -4,3 +4,4 @@ node_modules/
 .vscode/
 .pruebas.js
 test/
+.pruebas.json
