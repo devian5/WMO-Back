@@ -22,21 +22,19 @@ const movieAllHandler = async (req,res) => {
     }
 }
 
+const searchByIdHandler = async (req,res) => {
+    try {
+        const id = req.params.id;
+        const result = await movieController.search(id,req.body);
+        res.json(result);
+    } catch (error) {
+        console.log(error)
+    }
+}
 
-// const updateHandler = async (req,res) => {
-//     try {
-//         const {title,overview,genre} = req.body;
-//         const result = await movieController.update(title,overview,genre)
-//         res.json(result)
-//     } catch (error) {
-//         console.log(error);
-//     }
-// };
 const updateHandler = async (req,res) => {
     try {
         const id = req.params.id;
-        console.log(id);
-        console.log(req.body);
         const result = await movieController.update(id,req.body);
         res.json(result);
         
@@ -59,6 +57,7 @@ const deleteHandler = async (req,res) => {
 
 
 router.post('/', createHandler);
+router.get('/search/:id', searchByIdHandler);
 router.get('/all', movieAllHandler);
 router.put('/:id', updateHandler);
 router.delete('/delete/:id', deleteHandler);

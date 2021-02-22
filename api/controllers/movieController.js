@@ -10,15 +10,9 @@ class MovieController {
         return movie.find(film);
     }; 
 
-    // async update(title,overview,genre) {
-    //     return movie.updateOne(
-    //         {
-    //             title,
-    //             overview,
-    //             genre
-    //         }
-    //     )
-    // }
+    async search(id,film) {
+        return movie.findById(id,film);
+    };
 
     async update(id,film) {
         return movie.findByIdAndUpdate(id,film);
