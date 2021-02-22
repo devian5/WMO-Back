@@ -6,7 +6,7 @@ const Movie = require('../models/movieModel');
 const createHandler = async (req,res) => {
     try {
         const result = await movieController.create(new Movie(req.body));
-        res.json(result)
+        res.json({result,date: new Date})
         
     } catch (error) {
         console.log('=====================>',error)
@@ -16,7 +16,7 @@ const createHandler = async (req,res) => {
 const movieAllHandler = async (req,res) => {
     try {
         const result = await movieController.movieAll();
-        res.json(result)
+        res.json({result,date: new Date})
     } catch (error) {
         console.log(error)
     }
@@ -24,9 +24,10 @@ const movieAllHandler = async (req,res) => {
 
 const searchByIdHandler = async (req,res) => {
     try {
+        const movieSearch = req.body;
         const id = req.params.id;
-        const result = await movieController.search(id,req.body);
-        res.json(result);
+        const result = await movieController.search(id,movieSearch);
+        res.json({result,date: new Date});
     } catch (error) {
         console.log(error)
     }
@@ -34,22 +35,21 @@ const searchByIdHandler = async (req,res) => {
 
 const updateHandler = async (req,res) => {
     try {
+        const updateMovie = req.body;
         const id = req.params.id;
-        const result = await movieController.update(id,req.body);
-        res.json(result);
+        const result = await movieController.update(id,updateMovie);
+        res.json({result,date: new Date});
         
     } catch (error) {
-        console.log(error)
-        
+        console.log(error) 
     }
 }
 
 const deleteHandler = async (req,res) => {
     try {
         const id = req.params.id;
-        console.log('estamos en handler',id)
         const result = await movieController.delete(id);
-        res.json(result);
+        res.json({result,date: new Date});
     } catch (error) {
         console.log('================>',error)
     }

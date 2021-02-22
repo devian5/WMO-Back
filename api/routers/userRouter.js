@@ -1,11 +1,13 @@
-
 const router = require('express').Router();
 const userController = require('../controllers/userController');
+const User = require('../models/userModel')
+
+
 
 const createHandler = async (req,res) => {
     try {
-        const {name,email,password} = req.body;
-        const result = await userController.create(name,email,password);
+        const newUser = new User(req.body);
+        const result = await userController.create(newUser);
 
         res.json({result,date: new Date});
     } catch (error) {
@@ -15,9 +17,7 @@ const createHandler = async (req,res) => {
 
 const checkHandler = async (req,res) => {
     try {
-        const {name,email,password} = req.body;
-        const result = await userController.signIn(name,email,password);
-        // console.log(email,password)
+        const result = await userController.signIn(req.body);
         res.json({result,date: new Date});
         
     } catch (error) {
@@ -27,8 +27,9 @@ const checkHandler = async (req,res) => {
 
 const updateHandler = async (req,res) => {
     try {
-        const {name,email,password} = req.body;
-        const result = await userController.update(name,email,password);
+        const updateUser = req.body;
+        const id = req.params.id
+        const result = await userController.update(id,updateUser);
 
         res.json({result,date: new Date});
     } catch (error) {
@@ -38,8 +39,8 @@ const updateHandler = async (req,res) => {
 
 const deleteHandler = async (req,res) => {
     try {
-        const {name,email,password} = req.body;
-        const result = await userController.delete(name,email,password);
+        const id = req.params.id;
+        const result = await userController.delete(id);
 
         res.json({result,date: new Date});
     } catch (error) {
@@ -69,15 +70,10 @@ const userAllHandler = async (req,res) => {
 }
 
 router.post('/check', checkHandler);
-
 router.post('/', createHandler);
-
-router.delete('/delete', deleteHandler);
-
-router.put('/update', updateHandler);
-
+router.delete('/delete/:id', deleteHandler);
+router.put('/:id', updateHandler);
 router.get('/all', userAllHandler);
-
 router.delete('/delete-all', deleteUserHandler)
 
 module.exports = router
