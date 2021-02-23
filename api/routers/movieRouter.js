@@ -26,7 +26,16 @@ const searchByIdHandler = async (req,res) => {
     try {
         const movieSearch = req.body;
         const id = req.params.id;
-        const result = await movieController.search(id,movieSearch);
+        const result = await movieController.searchById(id,movieSearch);
+        res.json({result,date: new Date});
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+const searchTitleHeandler = async (req,res) => {
+    try {
+        const result = await movieController.searchTitle(req.body);
         res.json({result,date: new Date});
     } catch (error) {
         console.log(error)
@@ -58,6 +67,7 @@ const deleteHandler = async (req,res) => {
 
 router.post('/', createHandler);
 router.get('/search/:id', searchByIdHandler);
+router.get('/search', searchTitleHeandler);
 router.get('/all', movieAllHandler);
 router.put('/:id', updateHandler);
 router.delete('/delete/:id', deleteHandler);
