@@ -60,9 +60,9 @@ const deleteHandler = async (req,res) => {
         const result = await movieController.delete(id);
         res.json({result,date: new Date});
     } catch (error) {
-        console.log('================>',error)
-    }
-}
+        console.log('================>',error);
+    };
+};
 
 
 router.post('/', createHandler);

@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 const ObjectId = mongoose.Types.ObjectId;
 
-const movie_schema = new Schema({
+const movieSchema = new Schema({
     // id: {
     //     type: ObjectId,
     //     required: false
@@ -13,4 +13,4 @@ const movie_schema = new Schema({
     // image: String
     
 })
-module.exports = mongoose.model('movie', movie_schema)
+module.exports = mongoose.model('Movie', movieSchema)
