@@ -1,5 +1,7 @@
 const User = require('../models/userModel');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const secret = process.env.JWT_SECRET || 'pepesecret'
 
 class UserController {
 
@@ -18,6 +20,24 @@ class UserController {
     }
     return {user: user_list}
   }
+
+  async login(email,password) {
+    const user =  await User.findOne({email});
+    if(!user){
+        throw new Error('The email does not exist')
+    }
+    if(!await bcrypt.compare(password,user.password)){
+        throw new Error('Wrong password')
+    };
+
+    const payload = {
+        userId: user.id,
+        tokenCreationDate: new Date,
+    }
+
+    return jwt.sign(payload, secret);
+    
+}
 
   async update(id,user) {
     return User.findByIdAndUpdate(id,user);

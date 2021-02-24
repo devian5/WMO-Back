@@ -1,26 +1,24 @@
 const Rental = require('../models/rentalModel');
-const { userAll } = require('./userController');
+const User = require('../models/userModel');
+const Movie = require('../models/movieModel');
 
 class RentalController {
 
-    // async create(rental) {
-    //     return Rental.create(rental);
-    // };
-
     async rentMovie(ownerId,movieId) {
-        // const userEntity = await user.findById(userid);
-        // const movieEntity = await Movie.findById(movieid)
-        // if(!userEntity || !movieEntity){
-        //     throw new Error('ooops')
-        // }
+        const userEntity = await User.findById(ownerId);
+        const movieEntity = await Movie.findById(movieId)
+        if(!userEntity || !movieEntity){
+            throw new Error('ooops')
+        }
         // console.log('===================> CONTROLLER',movieId);
-        Rental.create({
+        return await Rental.create({
             ownerId: ownerId,
             movieId: movieId
             // dateIni: range[0],
             // dateEnd:  range[1]
         });
     };
+    
 
     async searchAll(order) {
         return Rental.find(order);

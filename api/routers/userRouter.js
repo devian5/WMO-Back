@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const userController = require('../controllers/userController');
 const User = require('../models/userModel')
+const jwt = require('jsonwebtoken');
+
 
 
 
@@ -24,6 +26,18 @@ const checkHandler = async (req,res) => {
         console.log(error); 
     };
 };
+
+const loginHandler = async (req,res) => {
+    try {
+        const {email,password} = req.body;
+        const jwt = await userController.login(email,password);
+        res.json({jwt})
+    } catch (error) {
+        return res.status(401).json({
+            message: error.message
+        });
+    }    
+}
 
 const updateHandler = async (req,res) => {
     try {
@@ -71,6 +85,7 @@ const userAllHandler = async (req,res) => {
 
 router.post('/check', checkHandler);
 router.post('/', createHandler);
+router.post('/login', loginHandler);
 router.delete('/delete/:id', deleteHandler);
 router.put('/:id', updateHandler);
 router.get('/all', userAllHandler);
