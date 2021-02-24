@@ -1,4 +1,5 @@
 const Rental = require('../models/rentalModel');
+const { userAll } = require('./userController');
 
 class RentalController {
 
@@ -7,6 +8,11 @@ class RentalController {
     // };
 
     async rentMovie(ownerId,movieId) {
+        // const userEntity = await user.findById(userid);
+        // const movieEntity = await Movie.findById(movieid)
+        // if(!userEntity || !movieEntity){
+        //     throw new Error('ooops')
+        // }
         // console.log('===================> CONTROLLER',movieId);
         Rental.create({
             ownerId: ownerId,
