@@ -37,7 +37,7 @@ class UserController {
 
     return jwt.sign(payload, secret);
     
-}
+  }
 
   async update(id,user) {
     return User.findByIdAndUpdate(id,user);
@@ -56,7 +56,6 @@ class UserController {
   }
 
 }
-
 
 const userController = new UserController
 module.exports = userController

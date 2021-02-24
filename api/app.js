@@ -6,11 +6,11 @@ const port = 3000
 
 app.use(express.json());
 
-app.use(router)
+app.use(router);
 db.then(()=>{
     app.listen(port, () => {
-        console.log('I am ready!!')
+        console.log('I am ready!!');
     })
 
-}).catch(console.log)
+}).catch(console.log);
 

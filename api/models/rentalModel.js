@@ -12,14 +12,19 @@ const rentalSchema = new Schema(
             type: ObjectId,
             required: true,
         },
-        dateInit: Date,
-        dateEnd: Date,
+        dateInit:{
+            type: Date,
+            default: new Date
+        },
+        dateEnd: {
+            type: Date,
+            default: new Date(+new Date() + 7*24*60*60*1000) 
+        },
         price: {
             type: Number,
             default: 2.5
         }
     }
-    
-)
+);
 
 module.exports = mongoose.model('Rental', rentalSchema)

@@ -1,9 +1,6 @@
 const router = require('express').Router();
 const userController = require('../controllers/userController');
 const User = require('../models/userModel')
-const jwt = require('jsonwebtoken');
-
-
 
 
 const createHandler = async (req,res) => {
@@ -15,7 +12,7 @@ const createHandler = async (req,res) => {
     } catch (error) {
         console.log(error); 
     }
-}
+};
 
 const checkHandler = async (req,res) => {
     try {
@@ -36,8 +33,8 @@ const loginHandler = async (req,res) => {
         return res.status(401).json({
             message: error.message
         });
-    }    
-}
+    };    
+};
 
 const updateHandler = async (req,res) => {
     try {
@@ -47,8 +44,8 @@ const updateHandler = async (req,res) => {
 
         res.json({result,date: new Date});
     } catch (error) {
-        console.log(error)   
-    }
+        console.log(error);  
+    };
 };
 
 const deleteHandler = async (req,res) => {
@@ -58,9 +55,9 @@ const deleteHandler = async (req,res) => {
 
         res.json({result,date: new Date});
     } catch (error) {
-        console.log(error)   
-    }
-}
+        console.log(error);   
+    };
+};
 
 const deleteUserHandler = async (req,res) => {
     try {
@@ -81,7 +78,7 @@ const userAllHandler = async (req,res) => {
         console.log('======================>',error); 
     };
 
-}
+};
 
 router.post('/check', checkHandler);
 router.post('/', createHandler);
@@ -89,6 +86,6 @@ router.post('/login', loginHandler);
 router.delete('/delete/:id', deleteHandler);
 router.put('/:id', updateHandler);
 router.get('/all', userAllHandler);
-router.delete('/delete-all', deleteUserHandler)
+router.delete('/delete-all', deleteUserHandler);
 
 module.exports = router
