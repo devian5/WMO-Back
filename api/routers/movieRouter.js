@@ -66,10 +66,10 @@ const deleteHandler = async (req,res) => {
 
 
 router.post('/', createHandler);
-router.get('/search/:id', searchByIdHandler);
+router.get('/:id', searchByIdHandler);
 router.get('/search', searchTitleHeandler);
-router.get('/all', movieAllHandler);
+router.get('/', movieAllHandler);
 router.put('/:id', updateHandler);
-router.delete('/delete/:id', deleteHandler);
+router.delete('/:id', deleteHandler);
 
 module.exports = router;
