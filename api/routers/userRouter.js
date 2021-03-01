@@ -83,9 +83,9 @@ const userAllHandler = async (req,res) => {
 router.post('/check', checkHandler);
 router.post('/', createHandler);
 router.post('/login', loginHandler);
-router.delete('/delete/:id', deleteHandler);
+router.delete('/:id', deleteHandler);
 router.put('/:id', updateHandler);
-router.get('/all', userAllHandler);
-router.delete('/delete-all', deleteUserHandler);
+router.get('/', userAllHandler);
+router.delete('/', deleteUserHandler);
 
 module.exports = router
