@@ -71,7 +71,6 @@ const deleteUserHandler = async (req,res) => {
 const userAllHandler = async (req,res) => {
     try {
         const result = await userController.userAll();
-        // console.log(result)
         res.json({result,date: new Date});
         
     } catch (error) {
