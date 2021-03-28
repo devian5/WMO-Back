@@ -34,8 +34,8 @@ class UserController {
         userId: user.id,
         tokenCreationDate: new Date,
     }
-
-    return jwt.sign(payload, secret);
+    const token = jwt.sign(payload, secret);
+    return {token, user}
     
   }
 
