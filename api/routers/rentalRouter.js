@@ -11,8 +11,8 @@ const createHandler = async (req,res) => {
         res.json({result,date: new Date});
     } catch (error) {
         console.log(error)
-    }
-}
+    };
+};
 
 const searchHandler = async (req,res) => {
     try {
