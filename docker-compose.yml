@@ -9,10 +9,10 @@ services:
         - 3000:3000
       depends_on:
         - mongo 
-      env_file:
-        - .env  
-      # environment:
-      #   MONGO_SERVER: mongodb://mongo:27017/wmo
+      # env_file:
+      #   - .env  
+      environment:
+        MONGO_SERVER: mongodb://mongo:27017/wmo
   mongo:
     image: mongo
     restart: always
