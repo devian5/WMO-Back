@@ -23,8 +23,8 @@ const loginHandler = async (req,res) => {
         const jwt = await adminController.login(email,password);
         const token = jwt.token;
         console.log(token,'TOOOOKEN!<=====================');
-        const admin = jwt.user;
-        console.log(user,'USEEER!<========================');
+        const admin = jwt.admin;
+        console.log(admin,'USEEER!<========================');
         res.json({token,admin, date: new Date});
     } catch (error) {
         return res.status(401).json({
