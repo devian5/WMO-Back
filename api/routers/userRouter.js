@@ -83,12 +83,24 @@ const userAllHandler = async (req,res) => {
 
 };
 
+const searchByIdHandler = async (req,res) => {
+    try {
+        const id = req.params.id;
+        const result = await userController.searchById(id);
+        res.json({result,date: new Date});
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
 router.post('/check', checkHandler);
 router.post('/', createHandler);
 router.post('/login', loginHandler);
 router.delete('/:id', deleteHandler);
 router.put('/:id', updateHandler);
 router.get('/', userAllHandler);
+router.get('/:id', searchByIdHandler);
 router.delete('/', deleteUserHandler);
 
 module.exports = router

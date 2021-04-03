@@ -55,6 +55,10 @@ class UserController {
     return User.find(allUser)
   }
 
+  async searchById(id) {
+    return User.findById(id)
+  }
+
 }
 
 const userController = new UserController
