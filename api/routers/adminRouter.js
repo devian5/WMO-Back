@@ -46,23 +46,57 @@ const updateHandler = async (req,res) => {
     };
 };
 
-const deleteUserHandler = async (req,res) => {
-
+const deleteHandler = async (req,res) => {
     try {
-        const result = await userController.deleteAll()
-        res.json({result,date: new Date})    
+        const id = req.params.id;
+        const result = await adminController.delete(id);
+
+        res.json({result,date: new Date});
     } catch (error) {
-        console.log(error)
+        console.log(error);   
+    };
+
+};
+
+const deleteUserHandler = async (req,res) => {
+    try {
+        const id = req.params.id;
+        const result = await userController.delete(id);
+
+        res.json({result,date: new Date});
+    } catch (error) {
+        console.log(error);   
     };
 };
 
+const adminAllHandler = async (req,res) => {
+    try {
+        const result = await adminController.adminAll();
+        res.json({result,date: new Date});
+        
+    } catch (error) {
+    };
 
+};
+
+const adminAllUserHandler = async (req,res) => {
+    try {
+        const result = await adminController.userAll();
+        res.json({result,date: new Date});
+        
+    } catch (error) {
+    };
+
+};
 
 
 
 router.post('/', createHandler);
 router.post('/login', loginHandler);
 router.put('/:id', updateHandler);
-router.delete('/', deleteUserHandler);
+router.delete('/id', deleteHandler);
+router.delete('/id', deleteUserHandler);
+router.get('/', adminAllHandler);
+router.get('/users', adminAllUserHandler);
 
 module.exports = router

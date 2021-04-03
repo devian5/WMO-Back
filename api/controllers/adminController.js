@@ -1,4 +1,5 @@
 const Admin = require('../models/adminModel');
+const User = require('../models/userModel');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const secret = process.env.JWT_SECRET || 'pepesecret'
@@ -39,9 +40,18 @@ class AdminController {
         return User.findByIdAndRemove(id)
     };
 
+    async delete(id) {
+        return Admin.findByIdAndRemove(id)
+    };
+
     async userAll(allUser) {
         return User.find(allUser)
-    };
+    }; 
+
+    async adminAll(allAdmin) {
+        return Admin.find(allAdmin)
+    }; 
+
 };
 
 const adminController = new AdminController

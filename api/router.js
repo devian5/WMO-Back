@@ -11,4 +11,5 @@ router.use('/movie',movieRouter);
 router.use('/order',rentalRouter);
 router.use('/payment',paymentRouter)
 
+
 module.exports = router
