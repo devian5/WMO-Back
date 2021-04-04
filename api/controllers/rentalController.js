@@ -11,6 +11,8 @@ class RentalController {
             throw new Error('ooops')
         }
         return await Rental.create({
+            userName: userEntity.userName,
+            title: movieEntity.title,
             ownerId: ownerId,
             movieId: movieId
         });

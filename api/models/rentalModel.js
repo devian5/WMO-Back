@@ -12,6 +12,9 @@ const rentalSchema = new Schema(
             type: ObjectId,
             required: true,
         },
+        userName: {
+            type: String,
+        },
         dateInit:{
             type: Date,
             default: new Date
