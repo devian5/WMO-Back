@@ -15,6 +15,9 @@ const rentalSchema = new Schema(
         userName: {
             type: String,
         },
+        title: {
+            type: String
+        },
         dateInit:{
             type: Date,
             default: new Date

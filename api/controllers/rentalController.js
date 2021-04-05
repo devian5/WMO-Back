@@ -6,7 +6,6 @@ class RentalController {
 
     async rentMovie(ownerId,movieId) {
         const userEntity = await User.findById(ownerId);
-        console.log(userEntity,'ESTO NO ES NULL')
         const movieEntity = await Movie.findById(movieId)
         if(!userEntity || !movieEntity){
             throw new Error('ooops')
@@ -26,6 +25,10 @@ class RentalController {
     async searchById(id,order) {
         return Rental.findById(id,order);
     };
+    
+    async searchByUserId(userId) {
+        return Rental.find({ownerId: userId})
+    }
 
     async delete(id){
         return Rental.findByIdAndRemove(id)
