@@ -4,8 +4,12 @@ const ObjectId = mongoose.Types.ObjectId;
 
 const paymentSchema = new Schema(
     {
-        userId: {
-            type: ObjectId
+        // payment: [],
+        // email: {
+        //     type: String,
+        // },
+        ownerId: {
+            type: ObjectId,
         },
         visa: {
             type: Number,

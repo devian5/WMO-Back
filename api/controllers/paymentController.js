@@ -1,11 +1,38 @@
+const Movie = require('../models/movieModel');
 const Payment = require('../models/paymentModel');
+const User = require('../models/userModel');
 
 
 class PaymentController {
 
-    async create(card) {
-        const createCard =  Payment.create(card);
-        return createCard;
+    // async cardCreate(ownerId,body) {
+        
+    //     const userEntity = await User.findById(ownerId);
+    //     console.log(userEntity,'USER<========')
+    //     return await Payment.create({
+    //         ownerId: userEntity.id,
+    //         payment: body.payment,
+
+    //         // email: userEntity.email
+            
+    //     });
+        
+    // };
+
+    async cardCreate(ownerId,visa,month,year,cvv,cardName) {
+        
+        const userEntity = await User.findById(ownerId);
+        console.log(userEntity,'USER<========')
+        return await Payment.create({
+            ownerId: userEntity._id,
+            visa: visa,
+            month: month,
+            year: year,
+            cvv: cvv,
+            cardName: cardName
+            
+        });
+        
     };
 
     async cardAll(card) {
@@ -15,6 +42,10 @@ class PaymentController {
     async searchById(id,card) {
         return Payment.findById(id,card);
     };
+
+    async searchByUserId(userId) {
+        return Payment.find({ownerId: userId})
+    }
 
     async searchTitle(card) {
         return Payment.findOne(card)
