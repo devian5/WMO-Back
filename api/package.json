@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon --exec node app.js"
+    "start": "node app.js",
+    "start-dev": "nodemon --exec node app.js"
   },
   "author": "",
   "license": "ISC",
